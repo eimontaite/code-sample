@@ -1,4 +1,4 @@
-package homework.adapters.postgresql
+package adapters.postgresql
 
 sealed trait Operator
 object Operator {
