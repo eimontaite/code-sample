@@ -4,6 +4,7 @@
 # ~~~~
 
 # An example controller showing a sample home page
+GET      /store                      controllers.HomeController.getStoreItem()
 POST     /store                      controllers.HomeController.saveStoreItem
 
 # Map static resources from the /public folder to the /assets URL path
