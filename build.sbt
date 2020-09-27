@@ -13,10 +13,5 @@ libraryDependencies ++= Seq(
   "org.scalikejdbc" %% "scalikejdbc"                  % "3.5.0",
   "org.scalikejdbc" %% "scalikejdbc-config"           % "3.5.0",
   "org.scalikejdbc" %% "scalikejdbc-play-initializer" % "2.8.0-scalikejdbc-3.5",
-  "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test)
-
-// Adds additional packages into Twirl
-//TwirlKeys.templateImports += "eimontaite.aiste.controllers._"
-
-// Adds additional packages into conf/routes
-// play.sbt.routes.RoutesKeys.routesImport += "eimontaite.aiste.binders._"
+  "org.scalactic" %% "scalactic" % "3.2.0",
+  "org.scalatest" %% "scalatest" % "3.2.0" % "test")
