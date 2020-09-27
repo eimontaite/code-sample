@@ -7,7 +7,7 @@ import play.api.libs.json.Json
 import services.StoreService
 
 @Singleton
-class HomeController @Inject()(val controllerComponents: ControllerComponents, storeService: StoreService) extends BaseController {
+class StoreController @Inject()(val controllerComponents: ControllerComponents, storeService: StoreService) extends BaseController {
 
   def getStoreItem(): Action[AnyContent] = Action { request =>
     val query = request.queryString.map { case (_, v) =>
