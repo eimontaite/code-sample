@@ -10,7 +10,6 @@ import services.StoreService
 class HomeController @Inject()(val controllerComponents: ControllerComponents, storeService: StoreService) extends BaseController {
 
   def getStoreItem(): Action[AnyContent] = Action { request =>
-    println(request.queryString)
     val query = request.queryString.map { case (_, v) =>
       v.mkString
     }.headOption
