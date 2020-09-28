@@ -10,7 +10,7 @@ services:
       - ./.ivy2:/root/.ivy2
       - ./.sbt:/root/.sbt
     ports:
-      - "9001:9000"
+      - "9000:9000"
   database:
     build: docker/postgres/
     volumes:
