@@ -4,13 +4,10 @@ import javax.inject._
 import models.StoreItem.StoreItem
 import play.api.mvc._
 import play.api.libs.json.Json
-import scalikejdbc.config.DBs
 import services.StoreService
 
 @Singleton
 class StoreController @Inject()(val controllerComponents: ControllerComponents, storeService: StoreService) extends BaseController {
-
-  DBs.setupAll()
 
   def getStoreItem(): Action[AnyContent] = Action { request =>
     val query = request.queryString.map { case (_, v) =>
@@ -32,6 +29,4 @@ class StoreController @Inject()(val controllerComponents: ControllerComponents, 
     storeService.create(storeItem)
     Ok
   }
-
-  DBs.closeAll()
 }
