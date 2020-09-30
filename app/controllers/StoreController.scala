@@ -16,8 +16,8 @@ class StoreController @Inject()(val controllerComponents: ControllerComponents, 
 
     val json = {
       query match {
-        case Some(queryString) => Ok(Json.toJson(storeService.getWithFilter(queryString)))
-        case None => Ok(Json.toJson(storeService.get()))
+        case Some(queryString) => Ok(Json.toJson(storeService.get(Some(queryString))))
+        case None => Ok(Json.toJson(storeService.get(None)))
       }
     }
     json

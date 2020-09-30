@@ -9,12 +9,11 @@ import scala.concurrent.{ExecutionContext, Future}
 
 class StoreService @Inject()(storeRepository: StoreRepository)(implicit ec: ExecutionContext) {
 
-  def get(): List[StoreItem] = {
-    storeRepository.get()
-  }
-
-  def getWithFilter(query: String): List[StoreItem] = {
-    storeRepository.getWithFilter(PostgreSqlAdapterService.process(query))
+  def get(query: Option[String]): List[StoreItem] = {
+    query match {
+      case Some(query) => storeRepository.getWithFilter(PostgreSqlAdapterService.process(query))
+      case None => storeRepository.get()
+    }
   }
 
   def create(storeItem: StoreItem): Future[Unit] = {
