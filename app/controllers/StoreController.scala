@@ -9,7 +9,7 @@ import services.StoreService
 @Singleton
 class StoreController @Inject()(val controllerComponents: ControllerComponents, storeService: StoreService) extends BaseController {
 
-  def getStoreItem(): Action[AnyContent] = Action { request =>
+  def getStoreItems(): Action[AnyContent] = Action { request =>
     val query = request.queryString.map { case (_, v) =>
       v.mkString
     }.headOption

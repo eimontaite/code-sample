@@ -3,7 +3,7 @@
 # https://www.playframework.com/documentation/latest/ScalaRouting
 # ~~~~
 
-GET      /store                      controllers.StoreController.getStoreItem()
+GET      /store                      controllers.StoreController.getStoreItems()
 POST     /store                      controllers.StoreController.saveStoreItem
 
 # Map static resources from the /public folder to the /assets URL path
