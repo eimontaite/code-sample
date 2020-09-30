@@ -5,25 +5,27 @@ import scalikejdbc._
 
 class StoreRepository {
 
-  def get(implicit session: DBSession = ReadOnlyAutoSession): List[StoreItem] = {
-    sql"""
-         SELECT * FROM store_items
-       """
-      .map(rsToStoreItem)
-      .list()
-      .apply()
-  }
-
-  def getWithFilter(query: String)(implicit session: DBSession = ReadOnlyAutoSession): List[StoreItem] = {
-    // https://github.com/scalikejdbc/scalikejdbc/issues/320
-    // would rather parameterize this, because this is a huge vulnerability
-    val filter = SQLSyntax.createUnsafely("WHERE ".concat(query))
-    sql"""
+  def get(query: Option[String])(implicit session: DBSession = ReadOnlyAutoSession): List[StoreItem] = {
+    query match {
+      case Some(query) =>
+        // https://github.com/scalikejdbc/scalikejdbc/issues/320
+        // would rather parameterize this, because this is a huge vulnerability
+        val filter = SQLSyntax.createUnsafely("WHERE ".concat(query))
+        sql"""
          SELECT * FROM store_items $filter
        """
-      .map(rsToStoreItem)
-      .list()
-      .apply()
+          .map(rsToStoreItem)
+          .list()
+          .apply()
+
+      case None =>
+        sql"""
+         SELECT * FROM store_items
+       """
+          .map(rsToStoreItem)
+          .list()
+          .apply()
+    }
   }
 
   def updateOrInsert(storeItem: StoreItem)(implicit session: DBSession): Unit = {

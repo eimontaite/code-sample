@@ -11,8 +11,8 @@ class StoreService @Inject()(storeRepository: StoreRepository)(implicit ec: Exec
 
   def get(query: Option[String]): List[StoreItem] = {
     query match {
-      case Some(query) => storeRepository.getWithFilter(PostgreSqlAdapterService.process(query))
-      case None => storeRepository.get()
+      case Some(query) => storeRepository.get(Some(PostgreSqlAdapterService.process(query)))
+      case None => storeRepository.get(None)
     }
   }
 
